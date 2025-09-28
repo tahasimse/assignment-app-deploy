@@ -6,6 +6,9 @@ mat-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 mat-toolbar-row {
@@ -28,6 +31,20 @@ mat-toolbar span {
   margin-left: 16px;
   font-size: 18px;
   font-weight: 500;
+  color: white;
+}
+
+mat-toolbar button {
+  color: white !important;
+}
+
+mat-toolbar button:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 50%;
+}
+
+mat-toolbar mat-icon {
+  color: white !important;
 }
 
 mat-sidenav-container {
