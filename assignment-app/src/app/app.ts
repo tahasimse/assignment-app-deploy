@@ -1,14 +1,49 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { AssignmentsComponent } from './assignments/assignments';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatButtonModule],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  imports: [
+    RouterOutlet,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    AssignmentsComponent
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 export class App {
   protected readonly title = signal('assignment-app');
+  opened = false;
+
+  constructor(private router: Router) {}
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
+    this.opened = false;
+  }
+
+  navigateToAjoutDevoir() {
+    this.router.navigate(['/ajout-devoir']);
+    this.opened = false;
+  }
+
+  navigateToListeDesDevoirs() {
+    this.router.navigate(['/liste-des-devoirs']);
+    this.opened = false;
+  }
 }

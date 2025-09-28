@@ -40,3 +40,13 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Files that were removed during cleanup:
+# - src/app/app.config.ts (alternative configuration - used module system instead)  
+# - src/app/app.routes.ts (empty routes - using app-routing.module.ts)
+# - src/app/app.html (orphaned - using app.component.html)
+# - src/app/app.css (orphaned - using app.component.css)  
+# - src/app/pages/ directory (all empty component files)
+# - src/app/app.spec.ts (test file)
+# - src/app/shared/rendu.ts (old directive version)
+# - src/app/assignments/non-rendu.directive.ts (unused directive)

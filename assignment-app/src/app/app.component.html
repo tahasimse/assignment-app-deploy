@@ -1,0 +1,74 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <!-- Sidebar button (leftmost) -->
+    <button mat-icon-button aria-label="Menu" (click)="opened=!opened">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Title -->
+    <span>Assignment App</span>
+
+    <!-- Home button -->
+    <button mat-icon-button aria-label="Home" (click)="navigateToHome()">
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <!-- Spacer to center the logo -->
+    <span class="toolbar-spacer"></span>
+
+    <!-- Logo in the middle -->
+    <img src="assets/images/logo.png" alt="Logo" class="toolbar-logo">
+
+    <!-- Spacer to push right side buttons to the end -->
+    <span class="toolbar-spacer"></span>
+
+    <!-- Right side buttons -->
+    <button mat-icon-button aria-label="Profile">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+
+    <button mat-icon-button aria-label="Logout">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)]="opened">
+    <h3>Menu des Devoirs</h3>
+    <button mat-button (click)="opened=!opened">Fermer</button>
+    
+    <div class="sidebar-links">
+      <button mat-button class="sidebar-link" (click)="navigateToAjoutDevoir()">
+        <mat-icon>add</mat-icon>
+        Ajout d'un devoir
+      </button>
+      
+      <button mat-button class="sidebar-link" (click)="navigateToListeDesDevoirs()">
+        <mat-icon>list</mat-icon>
+        Liste des devoirs
+      </button>
+      
+      <button mat-button class="sidebar-link">
+        <mat-icon>edit</mat-icon>
+        Modification d'un devoir
+      </button>
+      
+      <button mat-button class="sidebar-link">
+        <mat-icon>delete</mat-icon>
+        Suppression d'un devoir
+      </button>
+      
+      <button mat-button class="sidebar-link">
+        <mat-icon>data_usage</mat-icon>
+        Génération de données de test
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

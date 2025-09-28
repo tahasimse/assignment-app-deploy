@@ -1,0 +1,35 @@
+.rendu {
+	background: rgba(76, 175, 80, 0.08); /* light green */
+	border-left: 6px solid #2e7d32;
+	padding-left: 8px;
+	border-radius: 4px;
+}
+
+.nonRendu {
+	background: rgba(244, 67, 54, 0.06); /* light red */
+	border-left: 6px solid #c62828;
+	padding-left: 8px;
+	border-radius: 4px;
+}
+
+p {
+	margin: 6px 0;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 400px;
+	margin: 20px 0;
+}
+
+mat-form-field {
+	width: 100%;
+}
+
+button {
+	align-self: flex-start;
+	margin-top: 8px;
+}
+
