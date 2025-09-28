@@ -13,6 +13,17 @@ mat-toolbar-row {
   align-items: center;
 }
 
+.toolbar-left,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.toolbar-right {
+  justify-content: flex-end;
+}
+
 mat-toolbar span {
   margin-left: 16px;
   font-size: 18px;
@@ -71,11 +82,14 @@ mat-sidenav h3 {
 }
 
 .toolbar-logo {
-  height: 36px;
+  height: 40px;
   width: auto;
-  max-width: 120px;
+  max-width: 150px;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* Makes logo white for primary toolbar */
+  background: white;
+  padding: 4px;
+  border-radius: 4px;
+  /* Removed the invert filter to show original colors */
 }
 
 mat-sidenav-content {

@@ -1,35 +1,41 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <!-- Sidebar button (leftmost) -->
-    <button mat-icon-button aria-label="Menu" (click)="opened=!opened">
-      <mat-icon>menu</mat-icon>
-    </button>
+    <!-- Left side group -->
+    <div class="toolbar-left">
+      <!-- Sidebar button (leftmost) -->
+      <button mat-icon-button aria-label="Menu" (click)="opened=!opened">
+        <mat-icon>menu</mat-icon>
+      </button>
 
-    <!-- Title -->
-    <span>Assignment App</span>
+      <!-- Title -->
+      <span>Assignment App</span>
 
-    <!-- Home button -->
-    <button mat-icon-button aria-label="Home" (click)="navigateToHome()">
-      <mat-icon>home</mat-icon>
-    </button>
+      <!-- Home button -->
+      <button mat-icon-button aria-label="Home" (click)="navigateToHome()">
+        <mat-icon>home</mat-icon>
+      </button>
+    </div>
 
     <!-- Spacer to center the logo -->
     <span class="toolbar-spacer"></span>
 
-    <!-- Logo in the middle -->
-    <img src="assets/images/logo.png" alt="Logo" class="toolbar-logo">
+    <!-- Logo in the center -->
+    <img src="logo.jpg" alt="Logo" class="toolbar-logo">
 
-    <!-- Spacer to push right side buttons to the end -->
+    <!-- Spacer to balance the layout -->
     <span class="toolbar-spacer"></span>
 
-    <!-- Right side buttons -->
-    <button mat-icon-button aria-label="Profile">
-      <mat-icon>account_circle</mat-icon>
-    </button>
+    <!-- Right side group -->
+    <div class="toolbar-right">
+      <!-- Right side buttons -->
+      <button mat-icon-button aria-label="Profile">
+        <mat-icon>account_circle</mat-icon>
+      </button>
 
-    <button mat-icon-button aria-label="Logout">
-      <mat-icon>logout</mat-icon>
-    </button>
+      <button mat-icon-button aria-label="Logout">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>
 
