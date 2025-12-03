@@ -6,7 +6,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { MatListModule } from '@angular/material/list';
 import { Assignment } from './assignment.model';
+import { AssignmentDetail } from './assignment-detail/assignment-detail';
+import { AddAssignmentComponent } from './add-assignment/add-assignment';
 
 @Component({
   selector: 'app-assignments',
@@ -17,12 +21,26 @@ import { Assignment } from './assignment.model';
     MatDividerModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    FormsModule
+    FormsModule,
+    NgIf,
+    NgFor,
+    DatePipe,
+  MatListModule,
+    AssignmentDetail,
+    AddAssignmentComponent
   ],
-  templateUrl: './assignments.component.html',
+  templateUrl: './assignments.html',
   styleUrl: './assignments.css'
 })
 export class AssignmentsComponent implements OnInit {
+  formVisible = false;
+  assignmentSelectionne!: Assignment;
+  assignmentClique(assignment: Assignment) {
+    this.assignmentSelectionne = assignment;
+  }
+  trackByNom(index: number, assignment: Assignment) {
+    return assignment.nom;
+  }
   titre = "Mon application sur les assignments";
   nomAssignment = "";
   // Pour la démo du binding bi-directionnel
@@ -62,6 +80,23 @@ export class AssignmentsComponent implements OnInit {
     this.assignments.push(newAssignment);
   }
 
+  onAddAssignmentBtnClick() {
+    this.formVisible = true;
+  }
+
+  onNouvelAssignment(nouveau: Assignment) {
+    this.assignments.push(nouveau);
+    this.formVisible = false;
+  }
+
+  onDeleteAssignment(assignment: Assignment) {
+    const index = this.assignments.indexOf(assignment);
+    if (index > -1) {
+      this.assignments.splice(index, 1);
+    }
+    this.assignmentSelectionne = null!;
+  }
+
   protected AjouterAssignment(): void {
     const nom = this.nomAssignment?.trim();
     if (!nom) return;
@@ -85,5 +120,6 @@ export class AssignmentsComponent implements OnInit {
     this.AjouterAssignment();
   }
 
-  // (getColor removed: plus utilisé dans le template après passage aux directives appRendu/appNonRendu)
+
+
 }

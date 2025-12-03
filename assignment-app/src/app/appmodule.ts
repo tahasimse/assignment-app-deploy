@@ -12,10 +12,10 @@ import { FormsModule } from '@angular/forms';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './approuting';
 import { App } from './app';
 import { AssignmentsComponent } from './assignments/assignments';
-import { RenduDirective } from './shared/rendu.directive';
+import { RenduDirective } from './shared/rendu';
 
 @NgModule({
   declarations: [
