@@ -8,7 +8,9 @@
       </button>
 
       <!-- Title -->
-      <span>Assignment App</span>
+      <a routerLink="/home" style="text-decoration: none; color: white;">
+        {{titre}}
+      </a>
 
       <!-- Home button -->
       <button mat-icon-button aria-label="Home" (click)="navigateToHome()">
@@ -27,14 +29,11 @@
 
     <!-- Right side group -->
     <div class="toolbar-right">
-      <!-- Right side buttons -->
-      <button mat-icon-button aria-label="Profile">
-        <mat-icon>account_circle</mat-icon>
-      </button>
-
-      <button mat-icon-button aria-label="Logout">
-        <mat-icon>logout</mat-icon>
-      </button>
+      @if(!isLogged()) {
+        <button mat-flat-button color="accent" routerLink="/login">Se connecter</button>
+      } @else {
+        <button mat-flat-button color="warn" (click)="logout()">Se déconnecter</button>
+      }
     </div>
   </mat-toolbar-row>
 </mat-toolbar>
@@ -45,12 +44,12 @@
     <button mat-button (click)="opened=!opened">Fermer</button>
     
     <div class="sidebar-links">
-      <button mat-button class="sidebar-link" (click)="navigateToAjoutDevoir()">
+      <button mat-button class="sidebar-link" routerLink="/add" (click)="opened=false">
         <mat-icon>add</mat-icon>
         Ajout d'un devoir
       </button>
       
-      <button mat-button class="sidebar-link" (click)="navigateToListeDesDevoirs()">
+      <button mat-button class="sidebar-link" routerLink="/home" (click)="opened=false">
         <mat-icon>list</mat-icon>
         Liste des devoirs
       </button>
