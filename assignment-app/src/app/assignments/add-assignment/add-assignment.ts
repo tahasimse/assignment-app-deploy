@@ -32,8 +32,15 @@ export class AddAssignmentComponent {
 
   onAjouterAssignment(event: Event): void {
     event.preventDefault();
+    console.log("onAjouterAssignment called");
+    console.log("Nom:", this.nomAssignment);
+    console.log("Date:", this.dateDeRendu);
+
     const nom = this.nomAssignment?.trim();
-    if (!nom || !this.dateDeRendu) return;
+    if (!nom || !this.dateDeRendu) {
+      console.error("Formulaire invalide");
+      return;
+    }
 
     // Create a new assignment
     const nouveauAssignment: Assignment = new Assignment();
@@ -44,6 +51,7 @@ export class AddAssignmentComponent {
     // Use service to add assignment
     this.assignmentsService.addAssignment(nouveauAssignment)
       .subscribe(message => {
+        console.log("Assignment ajouté:", message);
         // Navigate back to home
         this.router.navigate(['/home']);
       });

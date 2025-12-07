@@ -8,6 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { AuthService } from './shared/auth.service';
+import { AssignmentsService } from './shared/assignments.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ export class App implements OnInit {
   nomDuProf = 'Michel Buffa';
   opened = false;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private assignmentsService: AssignmentsService) {}
 
   ngOnInit(): void {
   }
@@ -47,5 +48,32 @@ export class App implements OnInit {
 
   isLogged() {
     return this.authService.isLogged();
+  }
+
+  peuplerBD() {
+    this.assignmentsService.peuplerBD()
+      .subscribe({
+        next: () => {
+          console.log("La BD a été peuplée");
+          window.location.reload();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+  }
+
+  deleteAll() {
+    this.assignmentsService.deleteAll()
+      .subscribe({
+        next: (message) => {
+          console.log(message);
+          // On recharge la page pour afficher la liste vide
+          window.location.reload();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
   }
 }

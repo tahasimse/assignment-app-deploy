@@ -4,6 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { Assignment } from './assignment.model';
 import { AssignmentsService } from '../shared/assignments.service';
 import { RenduDirective } from '../shared/rendu';
@@ -18,6 +22,10 @@ import { AuthService } from '../shared/auth.service';
     MatDividerModule,
     DatePipe,
     MatListModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    FormsModule,
+    MatFormFieldModule,
     RenduDirective,
     NonRenduDirective
   ],
@@ -32,14 +40,16 @@ export class AssignmentsComponent implements OnInit {
   
   // Simple Assignment model for this component
   assignments: Assignment[] = [];
-  page = 1;
-  limit = 10;
-  totalDocs = 0;
-  totalPages = 0;
-  hasPrevPage = false;
-  prevPage = 1;
-  hasNextPage = false;
-  nextPage = 1;
+  
+  //pour gérer la pagination
+  page:number = 1;
+  limit:number = 10;
+  totalDocs!:number;
+  totalPages!:number;
+  nextPage!:number;
+  prevPage!:number;
+  hasPrevPage!:boolean;
+  hasNextPage!:boolean;
 
   constructor(private assignmentsService: AssignmentsService, private authService: AuthService) {}
 
@@ -48,18 +58,27 @@ export class AssignmentsComponent implements OnInit {
   }
 
   getAssignments() {
-    this.assignmentsService.getAssignments(this.page, this.limit)
-      .subscribe(data => {
+    this.assignmentsService.getAssignmentsPagine(this.page, this.limit)
+    .subscribe(
+      data => {
         this.assignments = data.docs;
         this.page = data.page;
         this.limit = data.limit;
         this.totalDocs = data.totalDocs;
         this.totalPages = data.totalPages;
-        this.hasPrevPage = data.hasPrevPage;
-        this.prevPage = data.prevPage;
-        this.hasNextPage = data.hasNextPage;
         this.nextPage = data.nextPage;
-      });
+        this.prevPage = data.prevPage;
+        this.hasPrevPage = data.hasPrevPage;
+        this.hasNextPage = data.hasNextPage;
+        console.log("Données reçues");
+      }
+    );
+  }
+
+  handlePage(event: PageEvent) {
+    this.page = event.pageIndex + 1;
+    this.limit = event.pageSize;
+    this.getAssignments();
   }
 
   pagePrecedente() {

@@ -26,21 +26,33 @@
   }
 </mat-list>
 
-<div class="pagination-container">
+<div class="pagination-container" style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px;">
   <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="premierePage()">
     Première
   </button>
-  &nbsp;
+  
   <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
     Précédent
   </button>
-  &nbsp;
-  <span>Page {{page}} / {{totalPages}}</span>
-  &nbsp;
+
+  <mat-form-field appearance="outline" subscriptSizing="dynamic" style="width: 140px;">
+    <mat-label>Items per page</mat-label>
+    <mat-select [(value)]="limit" (selectionChange)="page=1; getAssignments()">
+      <mat-option [value]="5">5</mat-option>
+      <mat-option [value]="10">10</mat-option>
+      <mat-option [value]="25">25</mat-option>
+      <mat-option [value]="100">100</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <span style="font-weight: bold;">
+    {{ totalDocs === 0 ? 0 : ((page - 1) * limit + 1) }} – {{ (page * limit) > totalDocs ? totalDocs : (page * limit) }} of {{ totalDocs }}
+  </span>
+
   <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
     Suivant
   </button>
-  &nbsp;
+  
   <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="dernierePage()">
     Dernière
   </button>
