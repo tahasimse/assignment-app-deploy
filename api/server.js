@@ -2,7 +2,6 @@ let express = require('express');
 let app = express();
 let bodyParser = require('body-parser');
 let assignment = require('./routes/assignments');
-let auth = require('./routes/auth');
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -22,9 +21,6 @@ mongoose.connect(uri, options)
     console.log("Connecté à la base MongoDB assignments dans le cloud !");
     console.log("at URI = " + uri);
     console.log("vérifiez with http://localhost:8010/api/assignments que cela fonctionne")
-    
-    // Populate default users if DB is empty
-    auth.createDefaultUsers();
     },
     err => {
       console.log('Erreur de connexion: ', err);
@@ -60,13 +56,6 @@ app.route(prefix + '/assignments')
 app.route(prefix + '/assignments/:id')
   .get(assignment.getAssignment)
   .delete(assignment.deleteAssignment);
-
-// Auth routes
-app.route(prefix + '/auth/login')
-  .post(auth.login);
-
-app.route(prefix + '/auth/register')
-  .post(auth.register);
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");
