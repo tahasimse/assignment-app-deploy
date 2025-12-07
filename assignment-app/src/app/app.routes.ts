@@ -9,7 +9,7 @@ import { LoginComponent } from './authentication/login/login.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: AssignmentsComponent },
-  { path: 'add', component: AddAssignmentComponent },
+  { path: 'add', component: AddAssignmentComponent, canActivate: [authGuard] },
   { path: 'assignment/:id', component: AssignmentDetail },
   { path: 'assignment/:id/edit', component: EditAssignmentComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },

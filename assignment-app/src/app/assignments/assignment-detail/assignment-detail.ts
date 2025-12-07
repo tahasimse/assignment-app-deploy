@@ -39,7 +39,6 @@ export class AssignmentDetail implements OnInit {
       this.assignmentTransmis.rendu = true;
       this.assignmentsService.updateAssignment(this.assignmentTransmis)
         .subscribe(message => {
-          console.log(message);
           this.router.navigate(['/home']);
         });
     }
@@ -50,7 +49,6 @@ export class AssignmentDetail implements OnInit {
 
     this.assignmentsService.deleteAssignment(this.assignmentTransmis)
       .subscribe(message => {
-        console.log(message);
         this.assignmentTransmis = undefined;
         this.router.navigate(['/home']);
       });

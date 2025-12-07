@@ -1,7 +1,9 @@
 <div class="container">
+  @if(isAdmin()) {
     <button mat-flat-button color="accent" class="ajout-btn" routerLink="/add">
         Ajouter Assignment
     </button>
+  }
 </div>
 <h1>Liste des Assignments:</h1>
 <mat-divider></mat-divider>
@@ -9,7 +11,7 @@
   @for(assignment of assignments; track assignment.nom) {
     <a routerLink="/assignment/{{assignment.id}}">
       <h3 mat-subheader>{{assignment.dateDeRendu | date:'dd/MM/yyyy'}}</h3>
-      <mat-list-item (click)="assignmentClique(assignment)">
+      <mat-list-item>
         @if(assignment.rendu) {
           <p appRendu>
             L'assignment "{{assignment.nom}}" a été rendu.
@@ -23,6 +25,26 @@
     </a>
   }
 </mat-list>
+
+<div class="pagination-container">
+  <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="premierePage()">
+    Première
+  </button>
+  &nbsp;
+  <button mat-raised-button color="primary" [disabled]="!hasPrevPage" (click)="pagePrecedente()">
+    Précédent
+  </button>
+  &nbsp;
+  <span>Page {{page}} / {{totalPages}}</span>
+  &nbsp;
+  <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="pageSuivante()">
+    Suivant
+  </button>
+  &nbsp;
+  <button mat-raised-button color="primary" [disabled]="!hasNextPage" (click)="dernierePage()">
+    Dernière
+  </button>
+</div>
 
 
 

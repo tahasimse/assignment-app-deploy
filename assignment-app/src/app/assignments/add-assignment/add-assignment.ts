@@ -44,7 +44,6 @@ export class AddAssignmentComponent {
     // Use service to add assignment
     this.assignmentsService.addAssignment(nouveauAssignment)
       .subscribe(message => {
-        console.log(message);
         // Navigate back to home
         this.router.navigate(['/home']);
       });

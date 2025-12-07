@@ -7,6 +7,15 @@
 .ajout-btn {
 	align-self: flex-end;
 }
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .rendu {
 	background: rgba(76, 175, 80, 0.08); /* light green */
 	border-left: 6px solid #2e7d32;

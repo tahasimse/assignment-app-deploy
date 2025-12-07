@@ -38,12 +38,6 @@ constructor(
 
  ngOnInit(): void {
    this.getAssignment();
-
-   // affichage des queryParams et fragment (Display of queryParams and fragment)
-   console.log("Query Params :");
-   console.log(this.route.snapshot.queryParams);
-   console.log("Fragment : ");
-   console.log(this.route.snapshot.fragment);
  }
 
  getAssignment() {
@@ -68,8 +62,6 @@ onSaveAssignment() {
   this.assignmentsService
     .updateAssignment(this.assignment)
     .subscribe((message) => {
-      console.log(message);
-
       // navigation vers la home page
       this.router.navigate(['/home']);
     });

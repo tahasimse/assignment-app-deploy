@@ -27,12 +27,26 @@ export class AssignmentsService {
     }
   ];
 
-  constructor() {
-    console.log("Service Assignments créé !");
-  }
+  constructor() { }
 
-  getAssignments(): Observable<Assignment[]> {
-    return of(this.assignments);
+  getAssignments(page: number, limit: number): Observable<any> {
+    // return of(this.assignments);
+    // Pagination simulation
+    const start = (page - 1) * limit;
+    const end = start + limit;
+    const paginatedAssignments = this.assignments.slice(start, end);
+    return of({
+      docs: paginatedAssignments,
+      totalDocs: this.assignments.length,
+      limit: limit,
+      page: page,
+      totalPages: Math.ceil(this.assignments.length / limit),
+      pagingCounter: start + 1,
+      hasPrevPage: page > 1,
+      hasNextPage: page < Math.ceil(this.assignments.length / limit),
+      prevPage: page > 1 ? page - 1 : null,
+      nextPage: page < Math.ceil(this.assignments.length / limit) ? page + 1 : null
+    });
   }
 
   getAssignment(id: number): Observable<Assignment | undefined> {
