@@ -50,7 +50,23 @@ export class App implements OnInit {
     return this.authService.isLogged();
   }
 
+  isAdmin() {
+    return this.authService.admin;
+  }
+
   peuplerBD() {
-    this.assignmentsService.peuplerBD();
+    this.assignmentsService.peuplerBD()
+      .subscribe(() => {
+        console.log("La base a été peuplée !");
+        window.location.reload();
+      });
+  }
+
+  deleteAll() {
+    this.assignmentsService.deleteAll()
+      .subscribe(message => {
+        console.log(message);
+        window.location.reload();
+      });
   }
 }

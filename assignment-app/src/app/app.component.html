@@ -29,7 +29,10 @@
 
     <!-- Right side group -->
     <div class="toolbar-right">
-      <button mat-flat-button color="accent" (click)="peuplerBD()">Peupler BD</button>
+      @if(isAdmin()) {
+        <button mat-flat-button color="accent" (click)="peuplerBD()">Peupler BD</button>
+        <button mat-flat-button color="warn" (click)="deleteAll()">Delete BD</button>
+      }
       @if(!isLogged()) {
         <button mat-flat-button color="accent" routerLink="/login">Se connecter</button>
       } @else {
