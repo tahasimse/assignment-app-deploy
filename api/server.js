@@ -44,6 +44,9 @@ let port = process.env.PORT || 8010;
 // les routes
 const prefix = '/api';
 
+app.route('/')
+  .get(assignment.getAssignments);
+
 app.route(prefix + '/assignments')
   .get(assignment.getAssignments)
   .post(assignment.postAssignment)
