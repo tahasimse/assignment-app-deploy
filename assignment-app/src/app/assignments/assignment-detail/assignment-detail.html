@@ -4,34 +4,49 @@
     <mat-icon>arrow_back</mat-icon>
   </button>
   
-  <mat-card appearance="outlined">
+  <mat-card appearance="outlined" class="assignment-card">
     <mat-card-header>
-      <mat-card-title>Details de l'assignment</mat-card-title>
-      <mat-card-subtitle>On pourra ajouter image etc.</mat-card-subtitle>
+      <mat-card-title>{{assignmentTransmis.nom}}</mat-card-title>
+      <mat-card-subtitle>Date limite : {{assignmentTransmis.dateDeRendu | date:'dd/MM/yyyy'}}</mat-card-subtitle>
     </mat-card-header>
+    
     <mat-card-content>
-    <p>
-      Cet assignment a pour nom : {{assignmentTransmis.nom}} <br>
-      et pour date de rendu :
-      {{assignmentTransmis.dateDeRendu | date:'dd/MM/yyyy'}} <br>
-      Blah Blah Blah......
-    </p>
-  </mat-card-content>
-  <mat-card-actions class="container">
-    @if(!assignmentTransmis.rendu && isLogged()){
-      <mat-checkbox (click)="onAssignmentRendu()">Rendu</mat-checkbox>
-    }
-    <nav>
+      <div class="status-section">
+        @if(assignmentTransmis.rendu) {
+          <p class="status-text rendu">
+            <mat-icon class="status-icon">check_circle</mat-icon>
+            Ce devoir a été rendu.
+          </p>
+        } @else {
+          <p class="status-text non-rendu">
+            <mat-icon class="status-icon">pending</mat-icon>
+            Ce devoir n'a pas encore été rendu.
+          </p>
+        }
+      </div>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-actions align="end" class="actions">
+      @if(!assignmentTransmis.rendu && isLogged()){
+        <button mat-flat-button color="accent" (click)="onAssignmentRendu()">
+          <mat-icon>check</mat-icon> MARQUER COMME RENDU
+        </button>
+      }
+      
       <button mat-stroked-button color="primary"
               [disabled]="!isAdmin()"
-              (click)="onClickEdit()">EDIT
+              (click)="onClickEdit()">
+        MODIFIER
       </button>
-    </nav>
-    <button mat-flat-button color="warn"
-            [disabled]="!isAdmin()"
-            (click)="onDeleteAssignment()">DELETE
-    </button>
-  </mat-card-actions>
-</mat-card>
+      
+      <button mat-flat-button color="warn"
+              [disabled]="!isAdmin()"
+              (click)="onDeleteAssignment()">
+        SUPPRIMER
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 }
