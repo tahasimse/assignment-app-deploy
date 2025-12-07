@@ -4,10 +4,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { Assignment } from '../assignment.model';
 import { AssignmentsService } from '../../shared/assignments.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
 selector: 'app-edit-assignment',
@@ -19,6 +20,8 @@ imports: [
   MatFormFieldModule,
   MatDatepickerModule,
   MatButtonModule,
+  MatIconModule,
+  RouterLink
 ],
 templateUrl: './edit-assignment.component.html',
 styleUrl: './edit-assignment.component.css',

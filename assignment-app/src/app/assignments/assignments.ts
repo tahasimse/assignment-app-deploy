@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { DatePipe } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
@@ -21,7 +21,7 @@ import { AuthService } from '../shared/auth.service';
     MatButtonModule,
     MatDividerModule,
     DatePipe,
-    MatListModule,
+    MatTableModule,
     MatPaginatorModule,
     MatSelectModule,
     FormsModule,
@@ -40,6 +40,7 @@ export class AssignmentsComponent implements OnInit {
   
   // Simple Assignment model for this component
   assignments: Assignment[] = [];
+  displayedColumns: string[] = ['nom', 'dateDeRendu', 'rendu'];
   
   //pour gérer la pagination
   page:number = 1;

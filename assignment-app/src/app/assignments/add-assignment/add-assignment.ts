@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 import { Assignment } from '../assignment.model';
 import { AssignmentsService } from '../../shared/assignments.service';
 
@@ -19,6 +20,8 @@ import { AssignmentsService } from '../../shared/assignments.service';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
+    RouterLink
   ],
   templateUrl: './add-assignment.html',
   styleUrl: './add-assignment.css'

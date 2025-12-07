@@ -1,10 +1,15 @@
 @if(assignmentTransmis){
-<mat-card appearance="outlined">
-  <mat-card-header>
-    <mat-card-title>Details de l'assignment</mat-card-title>
-    <mat-card-subtitle>On pourra ajouter image etc.</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
+<div class="container">
+  <button mat-icon-button routerLink="/home" style="margin-bottom: 10px;">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Details de l'assignment</mat-card-title>
+      <mat-card-subtitle>On pourra ajouter image etc.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
     <p>
       Cet assignment a pour nom : {{assignmentTransmis.nom}} <br>
       et pour date de rendu :
@@ -28,4 +33,5 @@
     </button>
   </mat-card-actions>
 </mat-card>
+</div>
 }
