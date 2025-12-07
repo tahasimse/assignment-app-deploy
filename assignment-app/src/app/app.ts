@@ -50,7 +50,13 @@ export class App implements OnInit {
     return this.authService.isLogged();
   }
 
+  isAdmin() {
+    return this.authService.isLogged() && this.authService.admin;
+  }
+
   peuplerBD() {
+    if (!this.isAdmin()) return;
+
     this.assignmentsService.peuplerBD()
       .subscribe({
         next: () => {
@@ -64,6 +70,8 @@ export class App implements OnInit {
   }
 
   deleteAll() {
+    if (!this.isAdmin()) return;
+
     this.assignmentsService.deleteAll()
       .subscribe({
         next: (message) => {

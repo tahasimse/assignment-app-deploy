@@ -62,7 +62,7 @@ export class AssignmentDetail implements OnInit {
   }
 
   isAdmin() {
-    return this.authService.admin;
+    return this.authService.isLogged() && this.authService.admin;
   }
 
   isLogged() {

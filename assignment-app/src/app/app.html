@@ -29,12 +29,10 @@
 
     <!-- Right side group -->
     <div class="toolbar-right">
-      <button mat-flat-button color="accent" (click)="peuplerBD()">Peupler BD</button>
-      <button mat-flat-button color="warn" (click)="deleteAll()">Reset BD</button>
       @if(!isLogged()) {
-        <button mat-flat-button color="accent" routerLink="/login">Se connecter</button>
+      <button mat-flat-button color="accent" routerLink="/login">Se connecter</button>
       } @else {
-        <button mat-flat-button color="warn" (click)="logout()">Se déconnecter</button>
+      <button mat-flat-button color="warn" (click)="logout()">Se déconnecter</button>
       }
     </div>
   </mat-toolbar-row>
@@ -42,30 +40,41 @@
 
 <mat-sidenav-container>
   <mat-sidenav mode="side" [(opened)]="opened">
-    <h3>Menu des Devoirs</h3>
     <button mat-button (click)="opened=!opened">Fermer</button>
-    
+
     <div class="sidebar-links">
+      @if(isAdmin()) {
       <button mat-button class="sidebar-link" routerLink="/add" (click)="opened=false">
         <mat-icon>add</mat-icon>
         Ajout d'un devoir
       </button>
-      
+
+      <button mat-button class="sidebar-link" (click)="peuplerBD(); opened=false" style="color: #f44336;">
+        <mat-icon>playlist_add</mat-icon>
+        Peupler BD
+      </button>
+
+      <button mat-button class="sidebar-link" (click)="deleteAll(); opened=false" style="color: #d32f2f;">
+        <mat-icon>delete_forever</mat-icon>
+        Delete BD
+      </button>
+      }
+
       <button mat-button class="sidebar-link" routerLink="/home" (click)="opened=false">
         <mat-icon>list</mat-icon>
         Liste des devoirs
       </button>
 
       @if(!isLogged()) {
-        <button mat-button class="sidebar-link" routerLink="/login" (click)="opened=false">
-          <mat-icon>login</mat-icon>
-          Se connecter
-        </button>
+      <button mat-button class="sidebar-link" routerLink="/login" (click)="opened=false">
+        <mat-icon>login</mat-icon>
+        Se connecter
+      </button>
       } @else {
-        <button mat-button class="sidebar-link" (click)="logout(); opened=false">
-          <mat-icon>logout</mat-icon>
-          Se déconnecter
-        </button>
+      <button mat-button class="sidebar-link" (click)="logout(); opened=false">
+        <mat-icon>logout</mat-icon>
+        Se déconnecter
+      </button>
       }
     </div>
   </mat-sidenav>

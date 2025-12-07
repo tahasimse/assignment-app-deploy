@@ -37,6 +37,7 @@ export class AuthService {
   }
 
   logOut() {
+    console.log("LOGOUT CALLED");
     this.loggedIn = false;
     this.admin = false;
     localStorage.removeItem('loggedIn');

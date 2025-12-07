@@ -30,6 +30,11 @@
 	border-radius: 4px;
 }
 
+.clickable-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+}
+
 p {
 	margin: 6px 0;
 }

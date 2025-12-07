@@ -105,4 +105,8 @@ export class AssignmentsComponent implements OnInit {
   isAdmin() {
     return this.authService.admin;
   }
+
+  isDatePasse(date: Date | string) {
+    return new Date(date) < new Date();
+  }
 }
